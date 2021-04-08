@@ -3,7 +3,8 @@ import { View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
-import HomeScreen from '../screens/homeScreen';
+import HomeScreen from '../screens/Home/homeScreen';
+import MeScreen from '../screens/Me/meScreen';
 
 import styles from './styles';
 
@@ -32,13 +33,13 @@ const ContactsTab = (props) => {
   );
 };
 
-const MeTab = (props) => {
-  return (
-    <View
-      style={{ flex: 1, justifyContent: 'center' }}
-    />
-  );
-};
+// const MeTab = (props) => {
+//   return (
+//     <View
+//       style={{ flex: 1, justifyContent: 'center' }}
+//     />
+//   );
+// };
 
 const Tab = createBottomTabNavigator();
 
@@ -100,7 +101,7 @@ const MainTabBar = () => {
         />
         <Tab.Screen
           name="Me"
-          component={MeTab}
+          component={MeScreen}
           options={{
             tabBarLabel: 'Me',
             tabBarIcon: ({ focused }) => (

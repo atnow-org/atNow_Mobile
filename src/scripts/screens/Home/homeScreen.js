@@ -5,9 +5,9 @@ import {
 
 import styles from './styles';
 
-import StudyIconActive from '../../assets/icons/StudyIcon_active.svg';
+import StudyIconActive from '../../../assets/icons/StudyIcon_active.svg';
 // import StudyIconInactive from '../../assets/icons/StudyIcon_inactive.svg';
-import PartyIconActive from '../../assets/icons/PartyIcon_active.svg';
+import PartyIconActive from '../../../assets/icons/PartyIcon_active.svg';
 // import PartyIconInactive from '../../assets/icons/PartyIcon_inactive.svg';
 
 const HomeScreen = (props) => {
