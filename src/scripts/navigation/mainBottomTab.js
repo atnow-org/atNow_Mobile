@@ -1,10 +1,19 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { connect, useDispatch, useStore } from 'react-redux';
 import { View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createStackNavigator } from '@react-navigation/stack';
+import auth from '@react-native-firebase/auth';
+
+import { getUser } from '../state/actions/user';
 
 import HomeScreen from '../screens/Home/homeScreen';
 import MeScreen from '../screens/Me/meScreen';
+import WelcomeScreen from '../screens/Auth/welcomeScreen';
+import NewUserInfoScreen from '../screens/Auth/newUserInfoScreen';
+import NewUserProfileScreen from '../screens/Auth/newUserProfileScreen';
+import LoginScreen from '../screens/Auth/loginScreen';
 
 import styles from './styles';
 
@@ -33,17 +42,61 @@ const ContactsTab = (props) => {
   );
 };
 
-// const MeTab = (props) => {
-//   return (
-//     <View
-//       style={{ flex: 1, justifyContent: 'center' }}
-//     />
-//   );
-// };
-
 const Tab = createBottomTabNavigator();
+const AuthStack = createStackNavigator();
+
+const AuthScreen = () => (
+  <NavigationContainer>
+    <AuthStack.Navigator>
+      <AuthStack.Screen
+        name="Welcome"
+        component={WelcomeScreen}
+        options={{ headerShown: false }}
+      />
+      <AuthStack.Screen
+        name="UserInfo"
+        component={NewUserInfoScreen}
+        options={{ headerShown: false }}
+      />
+      <AuthStack.Screen
+        name="UserProfile"
+        component={NewUserProfileScreen}
+        options={{ headerShown: false }}
+      />
+      <AuthStack.Screen
+        name="Login"
+        component={LoginScreen}
+        options={{ headerShown: false }}
+      />
+    </AuthStack.Navigator>
+
+  </NavigationContainer>
+);
 
 const MainTabBar = () => {
+  const dispatch = useDispatch();
+  const [user, setUser] = useState();
+  const store = useStore();
+
+  async function onAuthStateChange(userInfo) {
+    setUser(userInfo);
+    // TO DO: this is where we trigger redux actions to fetch user info
+    if (userInfo) {
+      console.log(userInfo);
+      Promise.all([
+        await getUser(userInfo.uid, dispatch),
+      ]);
+      console.log(store.getState());
+    }
+  }
+  useEffect(() => {
+    const subscriber = auth().onAuthStateChanged(onAuthStateChange);
+    // unsubscribe when component unmount
+    return subscriber;
+  }, []);
+
+  if (!user) return <AuthScreen />;
+
   return (
     <NavigationContainer>
       <Tab.Navigator
@@ -116,4 +169,12 @@ const MainTabBar = () => {
   );
 };
 
-export default MainTabBar;
+const mapStateToProps = (_state) => {
+  return {};
+};
+
+const mapDispatchToProps = (_dispatch) => {
+  return {};
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(MainTabBar);

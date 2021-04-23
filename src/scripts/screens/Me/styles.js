@@ -79,5 +79,9 @@ export default StyleSheet.create({
     flexDirection: 'column',
     // height: '25%',
   },
+  settingsIconStyle: {
+    alignSelf: 'flex-end',
+    marginRight: 25,
+  },
 
 });

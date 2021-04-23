@@ -1,12 +1,16 @@
 import React from 'react';
 import {
-  SafeAreaView, View, Text, Image,
+  SafeAreaView, View, Text, Image, TouchableOpacity,
 } from 'react-native';
+import { useSelector } from 'react-redux';
+import auth from '@react-native-firebase/auth';
 
 import ActivityIcons from '../../../assets/constants/activitiesIcons';
 import ConnectionProfileCircle from './components';
 
 import styles from './styles';
+
+import SettingsIcon from '../../../assets/icons/SettingsIcon.svg';
 
 // This function will alter as the backend and analytics is fleshed out
 // to track which activities are common for each user
@@ -38,11 +42,27 @@ const getTopConnections = () => {
   );
 };
 
+const logout = () => {
+  auth()
+    .signOut()
+    .then(() => console.log('User signed out!'));
+};
+
 const MeScreen = (props) => {
+  const user = useSelector((state) => state.UserReducer);
+
   return (
     <SafeAreaView style={styles.screenContainer}>
+      <TouchableOpacity
+        onPress={logout}
+        style={styles.settingsIconStyle}
+      >
+        <SettingsIcon />
+      </TouchableOpacity>
       <Text style={[styles.textStyle, styles.headerText]}>
-        Welcome, Ashley
+        Welcome,
+        {' '}
+        {user.firstname}
       </Text>
       <View style={styles.topSection}>
         <Image
@@ -51,7 +71,9 @@ const MeScreen = (props) => {
         />
         <View style={styles.topSubsection}>
           <Text style={[styles.textStyle, styles.subheaderText, styles.nameText]}>
-            Ashley Song
+            {user.firstname}
+            {' '}
+            {user.lastname}
           </Text>
           <Text style={[styles.textStyle, styles.subheaderText, styles.locationText]}>
             Hanover, NH
