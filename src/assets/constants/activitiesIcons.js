@@ -7,13 +7,13 @@ import OutingIcon from '../icons/OutingIcon_base.svg';
 const ActivityIcons = (activity) => {
   switch (activity) {
     case 'study':
-      return <StudyIcon />;
+      return <StudyIcon key={1} />;
     case 'chill':
-      return <ChillIcon />;
+      return <ChillIcon key={2} />;
     case 'outing':
-      return <OutingIcon />;
+      return <OutingIcon key={3} />;
     default:
-      return <StudyIcon />;
+      return <StudyIcon key={4} />;
   }
 };
 

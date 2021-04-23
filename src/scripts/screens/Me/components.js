@@ -10,7 +10,7 @@ const ConnectionProfileCircle = (connect) => {
   const name = connect.split(' ');
 
   return (
-    <View style={styles.connectionsContainer}>
+    <View style={styles.connectionsContainer} key={connect}>
       <Image
         source={{ uri: '../../../assets/icons/IMG_3663.jpeg' }}
         style={styles.connectionProfileCircle}
