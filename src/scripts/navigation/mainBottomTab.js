@@ -10,6 +10,7 @@ import { getUser } from '../state/actions/user';
 
 import HomeScreen from '../screens/Home/homeScreen';
 import MeScreen from '../screens/Me/meScreen';
+import ContactsScreen from '../screens/Contacts/contactsScreen';
 import WelcomeScreen from '../screens/Auth/welcomeScreen';
 import NewUserInfoScreen from '../screens/Auth/newUserInfoScreen';
 import NewUserProfileScreen from '../screens/Auth/newUserProfileScreen';
@@ -142,7 +143,7 @@ const MainTabBar = () => {
         />
         <Tab.Screen
           name="Contacts"
-          component={ContactsTab}
+          component={ContactsScreen}
           options={{
             tabBarLabel: 'Contacts',
             tabBarIcon: ({ focused }) => (
