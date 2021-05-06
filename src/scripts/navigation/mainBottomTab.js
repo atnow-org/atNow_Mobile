@@ -15,6 +15,7 @@ import WelcomeScreen from '../screens/Auth/welcomeScreen';
 import NewUserInfoScreen from '../screens/Auth/newUserInfoScreen';
 import NewUserProfileScreen from '../screens/Auth/newUserProfileScreen';
 import LoginScreen from '../screens/Auth/loginScreen';
+import ChatHomeScreen from '../screens/Chats/HomeScreen';
 
 import styles from './styles';
 
