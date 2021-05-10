@@ -55,15 +55,15 @@ const getStarredContacts = () => {
 const ContactsScreen = (props) => {
   return (
     <View style={styles.screenContainer}>
-      <View style={styles.subContainer}>
+      {/* <View style={styles.subContainer}>
             <Text style={[styles.textStyle]}>
               Starred
             </Text>
             {getStarredContacts()}
-          </View>
+          </View> */}
 
     <SectionList
-      sections={this.getContacts()}
+      sections={getContacts()}
       ListHeaderComponent={() => <Button title="Add Contact" />}
       renderItem={({ item }) => (
         <View style={styles.row}>

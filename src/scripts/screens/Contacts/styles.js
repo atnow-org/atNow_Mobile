@@ -9,7 +9,7 @@ export default StyleSheet.create({
  
       screenContainer: {
         flex: 1,
-        backgroundColor: "#fff",
+        backgroundColor: '#181818',
         flexDirection: "row",
         alignSelf: "stretch",
         paddingVertical: 20
@@ -24,7 +24,7 @@ export default StyleSheet.create({
         paddingVertical: 10
       },
       sectionHeader: {
-        backgroundColor: "#efefef",
+        backgroundColor: '#8296B117',
         paddingHorizontal: 20,
         paddingVertical: 10
       },
